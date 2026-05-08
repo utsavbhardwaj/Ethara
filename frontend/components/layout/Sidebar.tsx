@@ -5,7 +5,7 @@ import { usePathname, useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
 import {
   Zap, LayoutDashboard, FolderKanban, CheckSquare,
-  Users, Settings, LogOut, ChevronRight
+  Users, Settings, LogOut
 } from 'lucide-react';
 import { useAuthStore } from '@/store/auth.store';
 import { getInitials } from '@/lib/utils';
@@ -31,64 +31,64 @@ export function Sidebar() {
   };
 
   return (
-    <aside className="fixed left-0 top-0 h-full w-60 flex flex-col glass-strong border-r z-40"
-      style={{ borderColor: 'var(--border)' }}>
-      {/* Logo */}
-      <div className="p-5 border-b" style={{ borderColor: 'var(--border)' }}>
-        <Link href="/dashboard" className="flex items-center gap-3">
-          <div className="w-9 h-9 rounded-xl animated-gradient flex items-center justify-center flex-shrink-0">
-            <Zap size={18} className="text-white" />
+    <aside className="fixed left-0 top-0 h-full w-64 flex flex-col bg-white border-r border-gray-100 z-50">
+      {/* Header/Logo */}
+      <div className="p-8 pb-10">
+        <Link href="/dashboard" className="flex items-center gap-4">
+          <div className="w-11 h-11 rounded-2xl bg-[#1a1a2e] flex items-center justify-center flex-shrink-0 shadow-lg shadow-indigo-500/10 transition-transform hover:scale-105">
+            <Zap size={22} className="text-white fill-white" />
           </div>
           <div>
-            <div className="font-bold text-base gradient-text">FlowSphere</div>
-            <div className="text-xs" style={{ color: 'var(--text-muted)' }}>Team Workspace</div>
+            <div className="font-black text-xl tracking-tighter text-[#1a1a2e]">FlowSphere</div>
+            <div className="text-[10px] font-black uppercase tracking-[0.2em] text-gray-400">Team Hub</div>
           </div>
         </Link>
       </div>
 
-      {/* Nav */}
-      <nav className="flex-1 p-3 overflow-y-auto">
-        <div className="space-y-1">
-          {navItems.map((item) => {
-            const isActive = pathname === item.href || (item.href !== '/dashboard' && pathname.startsWith(item.href));
-            return (
-              <Link key={item.href} href={item.href}
-                className={`nav-link ${isActive ? 'active' : ''}`}>
-                <item.icon size={17} />
-                <span>{item.label}</span>
-                {isActive && (
-                  <motion.div
-                    layoutId="sidebar-indicator"
-                    className="ml-auto"
-                    initial={false}
-                  >
-                    <ChevronRight size={14} style={{ color: '#8b5cf6' }} />
-                  </motion.div>
-                )}
-              </Link>
-            );
-          })}
-        </div>
+      {/* Navigation */}
+      <nav className="flex-1 px-4 space-y-2">
+        {navItems.map((item) => {
+          const isActive = pathname === item.href || (item.href !== '/dashboard' && pathname.startsWith(item.href));
+          return (
+            <Link
+              key={item.href}
+              href={item.href}
+              className={`flex items-center gap-3 px-4 py-3.5 rounded-2xl text-sm font-bold transition-all duration-200 group ${
+                isActive 
+                ? 'bg-indigo-50 text-indigo-600 shadow-sm border border-indigo-100/50' 
+                : 'text-gray-500 hover:bg-gray-50 hover:text-gray-900'
+              }`}
+            >
+              <item.icon size={20} className={isActive ? 'text-indigo-600' : 'text-gray-400 group-hover:text-gray-600'} />
+              <span>{item.label}</span>
+            </Link>
+          );
+        })}
       </nav>
 
-      {/* User */}
-      <div className="p-3 border-t" style={{ borderColor: 'var(--border)' }}>
-        <div className="glass rounded-xl p-3 mb-2">
+      {/* User & Footer */}
+      <div className="p-4 border-t border-gray-50 mt-auto bg-gray-50/50">
+        <div className="bg-white rounded-2xl p-4 mb-4 shadow-sm border border-gray-100">
           <div className="flex items-center gap-3">
-            <div className="w-9 h-9 rounded-full flex items-center justify-center text-sm font-bold text-white flex-shrink-0"
-              style={{ background: 'linear-gradient(135deg, #6366f1, #8b5cf6)' }}>
+            <div className="w-11 h-11 rounded-full bg-gradient-to-br from-indigo-500 to-violet-600 flex items-center justify-center text-sm font-black text-white flex-shrink-0 shadow-md">
               {user ? getInitials(user.name) : '?'}
             </div>
             <div className="min-w-0">
-              <div className="font-semibold text-sm truncate">{user?.name}</div>
-              <div className="text-xs truncate" style={{ color: 'var(--text-muted)' }}>
-                {user?.role === 'ADMIN' ? '⚡ Admin' : '👤 Member'}
+              <div className="font-black text-sm text-[#1a1a2e] truncate">{user?.name}</div>
+              <div className="flex items-center gap-1.5 mt-0.5">
+                <div className={`w-1.5 h-1.5 rounded-full ${user?.role === 'ADMIN' ? 'bg-indigo-500' : 'bg-gray-400'}`} />
+                <span className="text-[10px] font-black uppercase tracking-wider text-gray-400">
+                  {user?.role === 'ADMIN' ? 'Admin' : 'Member'}
+                </span>
               </div>
             </div>
           </div>
         </div>
-        <button onClick={handleLogout} className="btn-ghost w-full justify-start text-sm" style={{ color: '#f87171' }}>
-          <LogOut size={15} />
+        <button 
+          onClick={handleLogout} 
+          className="flex items-center gap-3 w-full px-5 py-3.5 text-sm font-black text-red-500 hover:bg-red-50 rounded-2xl transition-all duration-200"
+        >
+          <LogOut size={18} />
           Sign out
         </button>
       </div>

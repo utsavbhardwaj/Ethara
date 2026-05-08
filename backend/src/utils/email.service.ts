@@ -84,13 +84,15 @@ class EmailService {
 </body>
 </html>`;
 
-    if (!this.transporter) {
-      // Dev fallback: log to console
-      console.log('\n📧 [EMAIL - Dev Mode] Verification email would be sent:');
-      console.log(`  To: ${to}`);
-      console.log(`  Verify URL: ${verifyUrl}\n`);
-      return;
+    // Always log to console in dev mode for easy testing
+    if (config.isDev) {
+      console.log('\n------------------------------------------------');
+      console.log('📧 [DEBUG] Verification link for', to);
+      console.log('🔗 URL:', verifyUrl);
+      console.log('------------------------------------------------\n');
     }
+
+    if (!this.transporter) return;
 
     await this.transporter.sendMail({
       from: this.from(),

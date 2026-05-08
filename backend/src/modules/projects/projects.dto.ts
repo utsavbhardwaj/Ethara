@@ -3,7 +3,7 @@ import { z } from 'zod';
 export const createProjectSchema = z.object({
   title: z.string().min(1, 'Title is required').max(100),
   description: z.string().optional(),
-  deadline: z.string().datetime().optional().nullable(),
+  deadline: z.string().optional().nullable(),
   status: z.enum(['ACTIVE', 'ON_HOLD', 'COMPLETED', 'ARCHIVED']).optional().default('ACTIVE'),
 });
 
