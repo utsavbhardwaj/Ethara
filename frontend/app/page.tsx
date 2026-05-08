@@ -78,193 +78,274 @@ export default function LandingPage() {
   return (
     <div className="min-h-screen selection:bg-indigo-100 selection:text-indigo-900" style={{ background: 'var(--bg-primary)' }}>
       {/* Navbar */}
-      <nav className="fixed top-0 left-0 right-0 z-50 glass border-b" style={{ borderColor: 'rgba(0,0,0,0.05)' }}>
+      <nav className="fixed top-0 left-0 right-0 z-50 glass-strong border-b" style={{ borderColor: 'rgba(0,0,0,0.03)', background: 'rgba(255, 255, 255, 0.8)' }}>
         <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-[#1a1a2e] flex items-center justify-center overflow-hidden">
+            <div className="w-10 h-10 rounded-xl bg-[#1a1a2e] flex items-center justify-center shadow-lg">
               <Zap size={20} className="text-white" />
             </div>
             <span className="font-bold text-xl tracking-tight" style={{ color: '#1a1a2e' }}>FlowSphere</span>
           </div>
           <div className="hidden lg:flex items-center gap-10">
-            {['Read our blog', 'Visit our GitHub', 'Join our Community'].map((item) => (
-              <a key={item} href="#" className="text-[15px] font-medium transition-colors" style={{ color: 'var(--text-primary)' }}
-                onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--accent-primary)')}
-                onMouseLeave={(e) => (e.currentTarget.style.color = 'var(--text-primary)')}
-              >
+            {['Product', 'Integrations', 'Pricing', 'Company'].map((item) => (
+              <a key={item} href="#" className="text-[14px] font-semibold text-gray-500 hover:text-indigo-600 transition-colors">
                 {item}
               </a>
             ))}
           </div>
           <div className="flex items-center gap-4">
-            <Link href="/login" className="text-[15px] font-semibold px-4 py-2 hover:bg-gray-100 rounded-lg transition-colors" style={{ color: 'var(--text-primary)' }}>Log in</Link>
+            <Link href="/login" className="text-[14px] font-semibold px-4 py-2 hover:bg-gray-100 rounded-xl transition-colors" style={{ color: 'var(--text-primary)' }}>Log in</Link>
             <Link href="/signup" className="btn-primary">
-              Get now <ArrowRight size={16} />
+              Try for free
             </Link>
           </div>
         </div>
       </nav>
 
       {/* Hero */}
-      <section className="relative pt-40 pb-32 px-6 overflow-hidden">
-        {/* Soft background blobs */}
-        <div className="absolute top-[-10%] right-[-10%] w-[60%] h-[80%] rounded-full blur-[120px] opacity-20 pointer-events-none"
+      <section className="relative pt-44 pb-32 px-6 overflow-hidden">
+        {/* Soft background aesthetics */}
+        <div className="absolute top-[-20%] right-[-10%] w-[70%] h-[100%] rounded-full blur-[150px] opacity-10 pointer-events-none"
           style={{ background: 'radial-gradient(circle, #6366f1, #a855f7, transparent)' }} />
+        <div className="absolute bottom-[-10%] left-[-10%] w-[40%] h-[60%] rounded-full blur-[120px] opacity-10 pointer-events-none"
+          style={{ background: 'radial-gradient(circle, #06b6d4, transparent)' }} />
         
-        <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 items-center relative z-10">
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-          >
+        <div className="max-w-7xl mx-auto relative z-10">
+          <div className="grid lg:grid-cols-2 gap-20 items-center">
             <motion.div
-              initial={{ opacity: 0, y: 10 }}
+              initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2 }}
-              className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full mb-8 text-sm font-semibold"
-              style={{ background: 'rgba(99, 102, 241, 0.08)', color: '#6366f1', border: '1px solid rgba(99, 102, 241, 0.1)' }}
+              transition={{ duration: 0.8 }}
             >
-              <Zap size={14} fill="currentColor" />
-              Web3, decentralized task management
-            </motion.div>
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-lg mb-8 text-xs font-bold uppercase tracking-wider"
+                style={{ background: 'rgba(99, 102, 241, 0.08)', color: '#6366f1' }}>
+                <span className="flex h-2 w-2 rounded-full bg-indigo-500 animate-pulse" />
+                New: AI-Powered Workflows
+              </div>
 
-            <h1 className="text-6xl md:text-8xl font-bold leading-[1.1] mb-8 tracking-tight" style={{ color: '#1a1a2e' }}>
-              Teams, <br />
-              <span className="text-gray-400">decentralized</span>
-            </h1>
+              <h1 className="text-6xl md:text-[5.5rem] font-bold leading-[1] mb-8 tracking-tighter" style={{ color: '#1a1a2e' }}>
+                Manage projects, <br />
+                <span className="text-indigo-600">not chaos.</span>
+              </h1>
 
-            <p className="text-xl md:text-2xl mb-12 max-w-xl leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
-              Your projects, tasks, and team all in one place — secure, simple, and lightning fast.
-            </p>
+              <p className="text-xl md:text-2xl mb-12 max-w-lg leading-relaxed text-gray-500 font-medium">
+                FlowSphere combines power and simplicity to help your team ship faster. 
+                Everything you need to track, collaborate, and succeed.
+              </p>
 
-            <div className="flex flex-wrap items-center gap-6">
-              <Link href="/signup" className="btn-primary text-lg px-10 py-4 rounded-2xl">
-                <Shield size={20} className="mr-2" />
-                Start for free
-              </Link>
-              <div className="flex -space-x-3">
-                {[1, 2, 3, 4].map((i) => (
-                  <div key={i} className="w-10 h-10 rounded-full border-2 border-white bg-gray-100 flex items-center justify-center text-xs font-bold"
-                    style={{ background: `hsl(${i * 40}, 70%, 80%)` }}>
-                    U{i}
-                  </div>
-                ))}
-                <div className="w-10 h-10 rounded-full border-2 border-white bg-white flex items-center justify-center text-[10px] font-bold text-gray-400 shadow-sm">
-                  +2k
+              <div className="flex flex-col sm:flex-row items-center gap-5">
+                <Link href="/signup" className="btn-primary text-lg px-10 py-4.5 rounded-2xl w-full sm:w-auto justify-center">
+                  Get started free
+                  <ArrowRight size={20} className="ml-2" />
+                </Link>
+                <Link href="/login" className="btn-secondary text-lg px-10 py-4.5 rounded-2xl w-full sm:w-auto justify-center">
+                  Watch demo
+                </Link>
+              </div>
+
+              <div className="mt-12 pt-12 border-t border-gray-100">
+                <p className="text-sm font-bold text-gray-400 uppercase tracking-widest mb-6">Trusted by world-class teams</p>
+                <div className="flex flex-wrap items-center gap-10 grayscale opacity-40">
+                  <div className="text-2xl font-black italic">LINEAR</div>
+                  <div className="text-2xl font-black">Vercel</div>
+                  <div className="text-2xl font-black">Figma</div>
+                  <div className="text-2xl font-black italic">Stripe</div>
                 </div>
               </div>
-            </div>
-          </motion.div>
+            </motion.div>
 
-          <motion.div
-            className="relative"
-            initial={{ opacity: 0, scale: 0.8, rotate: 5 }}
-            animate={{ opacity: 1, scale: 1, rotate: 0 }}
-            transition={{ duration: 1, ease: "easeOut" }}
-          >
-            <div className="relative z-10 p-4">
-              <img 
-                src="/hero-asset.png" 
-                alt="3D Crystal Render" 
-                className="w-full h-auto drop-shadow-[0_50px_50px_rgba(99,102,241,0.2)] animate-float"
-              />
-            </div>
-            {/* Decorative elements */}
-            <motion.div 
-              animate={{ y: [0, -20, 0] }} 
-              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-              className="absolute top-10 right-0 w-24 h-24 bg-white/40 backdrop-blur-xl rounded-3xl border border-white/50 shadow-2xl z-20 flex items-center justify-center"
+            <motion.div
+              className="relative lg:scale-110"
+              initial={{ opacity: 0, x: 50, scale: 0.9 }}
+              animate={{ opacity: 1, x: 0, scale: 1.1 }}
+              transition={{ duration: 1, ease: "easeOut" }}
             >
-              <Kanban size={32} className="text-indigo-500" />
+              <div className="relative z-10">
+                <img 
+                  src="/dashboard-preview.png" 
+                  alt="FlowSphere Dashboard Preview" 
+                  className="w-full h-auto drop-shadow-[0_40px_80px_rgba(0,0,0,0.12)] rounded-3xl"
+                />
+              </div>
+
+              {/* Floating Productivity Widgets */}
+              <motion.div 
+                animate={{ y: [0, -15, 0] }} 
+                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                className="absolute -top-10 -right-10 glass-strong p-4 rounded-2xl shadow-2xl z-20 border border-white/50"
+              >
+                <div className="flex items-center gap-3">
+                  <div className="w-8 h-8 rounded-full bg-green-100 flex items-center justify-center text-green-600">
+                    <CheckCircle2 size={18} />
+                  </div>
+                  <div>
+                    <div className="text-[10px] text-gray-400 font-bold uppercase">Task Completed</div>
+                    <div className="text-xs font-bold" style={{ color: '#1a1a2e' }}>Deploy to Production</div>
+                  </div>
+                </div>
+              </motion.div>
+
+              <motion.div 
+                animate={{ y: [0, 15, 0] }} 
+                transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+                className="absolute -bottom-10 -left-10 glass-strong p-4 rounded-2xl shadow-2xl z-20 border border-white/50"
+              >
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-full bg-indigo-500 flex items-center justify-center text-white font-bold text-xs">
+                    MK
+                  </div>
+                  <div>
+                    <div className="text-[10px] text-gray-400 font-bold uppercase">New Comment</div>
+                    <div className="text-xs font-bold" style={{ color: '#1a1a2e' }}>"Looks good to ship! 🚀"</div>
+                  </div>
+                </div>
+              </motion.div>
             </motion.div>
-            <motion.div 
-              animate={{ y: [0, 20, 0] }} 
-              transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-              className="absolute bottom-20 left-0 w-20 h-20 bg-white/40 backdrop-blur-xl rounded-full border border-white/50 shadow-2xl z-20 flex items-center justify-center"
-            >
-              <Users size={28} className="text-purple-500" />
-            </motion.div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
-      {/* Features - Minimalist */}
-      <section id="features" className="py-32 px-6 bg-white">
+      {/* Feature Grid - The 'Clean UI' Promise */}
+      <section className="py-32 px-6 bg-white border-y border-gray-50">
         <div className="max-w-7xl mx-auto">
-          <div className="grid md:grid-cols-3 gap-16">
-            {features.slice(0, 3).map((feature, i) => (
+          <div className="text-center max-w-3xl mx-auto mb-20">
+            <h2 className="text-4xl md:text-5xl font-bold mb-6 tracking-tight" style={{ color: '#1a1a2e' }}>
+              Built for the way <span className="text-indigo-600">modern teams work</span>.
+            </h2>
+            <p className="text-xl text-gray-500">
+              Powerful enough for engineers, simple enough for everyone else. 
+              Say goodbye to cluttered spreadsheets and confusing interfaces.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            {[
+              { 
+                icon: Kanban, 
+                title: 'Visual Workflows', 
+                desc: 'Manage tasks with intuitive Kanban boards that help everyone stay aligned on progress.',
+                color: '#6366f1'
+              },
+              { 
+                icon: BarChart3, 
+                title: 'Real-time Analytics', 
+                desc: 'Track team productivity and project health with beautiful, automated dashboards.',
+                color: '#ec4899'
+              },
+              { 
+                icon: Users, 
+                title: 'Granular Collaboration', 
+                desc: 'Assign roles, leave comments, and collaborate in real-time without the friction.',
+                color: '#a855f7'
+              }
+            ].map((f, i) => (
               <motion.div
-                key={feature.title}
+                key={f.title}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: i * 0.2 }}
+                transition={{ delay: i * 0.1 }}
+                className="p-10 rounded-3xl border border-gray-100 hover:border-indigo-100 transition-all group"
+                style={{ background: '#fcfcfe' }}
               >
-                <div className={`w-14 h-14 rounded-2xl bg-indigo-50 flex items-center justify-center mb-8`}>
-                  <feature.icon size={28} className="text-indigo-600" />
+                <div className="w-16 h-16 rounded-2xl flex items-center justify-center mb-8 transition-transform group-hover:scale-110"
+                  style={{ background: `${f.color}15`, color: f.color }}>
+                  <f.icon size={32} />
                 </div>
-                <h3 className="text-2xl font-bold mb-4" style={{ color: '#1a1a2e' }}>{feature.title}</h3>
-                <p className="text-lg leading-relaxed text-gray-500">{feature.description}</p>
+                <h3 className="text-2xl font-bold mb-4" style={{ color: '#1a1a2e' }}>{f.title}</h3>
+                <p className="text-lg leading-relaxed text-gray-500">{f.desc}</p>
               </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* CTA Bottom */}
-      <section className="py-40 px-6 relative overflow-hidden" style={{ background: '#f8f9ff' }}>
-        <div className="max-w-4xl mx-auto text-center relative z-10">
-          <h2 className="text-5xl md:text-7xl font-bold mb-10 tracking-tight" style={{ color: '#1a1a2e' }}>
-            Ready to flow?
+      {/* Social Proof - Large */}
+      <section className="py-32 px-6" style={{ background: 'var(--bg-primary)' }}>
+        <div className="max-w-7xl mx-auto text-center">
+          <div className="inline-block px-4 py-1.5 rounded-full mb-10 text-xs font-bold uppercase tracking-widest"
+            style={{ background: '#1a1a2e', color: 'white' }}>
+            Trusted Worldwide
+          </div>
+          <h2 className="text-4xl md:text-6xl font-bold mb-16 tracking-tight" style={{ color: '#1a1a2e' }}>
+            Thousands of teams <br />flow with us every day.
           </h2>
-          <Link href="/signup" className="btn-primary text-xl px-12 py-5 rounded-3xl">
-            Create your account <ArrowRight size={24} className="ml-2" />
-          </Link>
-          <p className="mt-8 text-gray-400 font-medium italic">No credit card required. Free forever for individuals.</p>
+          <div className="grid md:grid-cols-4 gap-8">
+            {stats.map((s) => (
+              <div key={s.label} className="p-8 rounded-3xl bg-white border border-gray-100 shadow-sm">
+                <div className="text-4xl font-bold text-indigo-600 mb-2">{s.value}</div>
+                <div className="text-sm font-bold text-gray-400 uppercase tracking-widest">{s.label}</div>
+              </div>
+            ))}
+          </div>
         </div>
+      </section>
+
+      {/* CTA Bottom */}
+      <section className="py-40 px-6 relative overflow-hidden bg-[#1a1a2e]">
+        <div className="absolute inset-0 opacity-20 pointer-events-none"
+          style={{ background: 'radial-gradient(circle at 70% 30%, #6366f1, transparent)' }} />
         
-        {/* Subtle background circles */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-indigo-100/50 rounded-full blur-3xl -z-10" />
+        <div className="max-w-4xl mx-auto text-center relative z-10">
+          <h2 className="text-5xl md:text-7xl font-bold mb-10 tracking-tight text-white">
+            Transform your <br /><span className="text-indigo-400">productivity</span> today.
+          </h2>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
+            <Link href="/signup" className="bg-white text-[#1a1a2e] text-xl px-12 py-5 rounded-3xl font-bold hover:bg-gray-100 transition-all flex items-center">
+              Start for free <ArrowRight size={24} className="ml-2" />
+            </Link>
+            <Link href="/login" className="text-white font-bold border-b-2 border-white/20 hover:border-white transition-all py-1">
+              Talk to Sales
+            </Link>
+          </div>
+          <p className="mt-12 text-gray-400 font-medium">Join 10,000+ teams who ship faster with FlowSphere.</p>
+        </div>
       </section>
 
       {/* Footer */}
       <footer className="py-20 px-6 bg-white border-t border-gray-100">
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-10">
-          <div className="flex items-center gap-3">
-            <div className="w-8 h-8 rounded-lg bg-[#1a1a2e] flex items-center justify-center">
-              <Zap size={16} className="text-white" />
+        <div className="max-w-7xl mx-auto">
+          <div className="grid md:grid-cols-4 gap-12 mb-20">
+            <div className="col-span-1 md:col-span-1">
+              <div className="flex items-center gap-3 mb-6">
+                <div className="w-8 h-8 rounded-lg bg-[#1a1a2e] flex items-center justify-center shadow-md">
+                  <Zap size={16} className="text-white" />
+                </div>
+                <span className="font-bold text-lg tracking-tight" style={{ color: '#1a1a2e' }}>FlowSphere</span>
+              </div>
+              <p className="text-gray-500 font-medium leading-relaxed">
+                The modern project management platform for high-velocity teams.
+              </p>
             </div>
-            <span className="font-bold text-lg tracking-tight" style={{ color: '#1a1a2e' }}>FlowSphere</span>
+            {[
+              { title: 'Product', links: ['Features', 'Integrations', 'Pricing', 'Changelog'] },
+              { title: 'Resources', links: ['Documentation', 'Guides', 'API Reference', 'Community'] },
+              { title: 'Company', links: ['About', 'Blog', 'Careers', 'Privacy'] }
+            ].map((col) => (
+              <div key={col.title}>
+                <h4 className="font-bold text-sm uppercase tracking-widest text-gray-400 mb-6">{col.title}</h4>
+                <ul className="space-y-4">
+                  {col.links.map((link) => (
+                    <li key={link}>
+                      <a href="#" className="text-gray-500 font-medium hover:text-indigo-600 transition-colors">{link}</a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
           </div>
-          <div className="flex items-center gap-10 text-gray-400 font-medium">
-            <a href="#" className="hover:text-indigo-600 transition-colors">Privacy</a>
-            <a href="#" className="hover:text-indigo-600 transition-colors">Terms</a>
-            <a href="#" className="hover:text-indigo-600 transition-colors">Security</a>
-            <a href="#" className="hover:text-indigo-600 transition-colors">Support</a>
-          </div>
-          <div className="flex items-center gap-4">
-            <div className="w-10 h-10 rounded-full bg-gray-50 flex items-center justify-center text-gray-400 hover:text-indigo-600 cursor-pointer transition-all">
-              <span className="font-bold">𝕏</span>
+          <div className="pt-10 border-t border-gray-50 flex flex-col md:flex-row items-center justify-between gap-6">
+            <div className="text-gray-400 text-sm font-medium">
+              © 2026 FlowSphere · All rights reserved.
             </div>
-            <div className="w-10 h-10 rounded-full bg-gray-50 flex items-center justify-center text-gray-400 hover:text-indigo-600 cursor-pointer transition-all">
-              <span className="font-bold">GH</span>
+            <div className="flex items-center gap-6">
+              <span className="text-gray-300">𝕏</span>
+              <span className="text-gray-300">GH</span>
+              <span className="text-gray-300">LD</span>
             </div>
           </div>
-        </div>
-        <div className="max-w-7xl mx-auto mt-20 pt-10 border-t border-gray-50 text-center text-gray-300 text-sm font-medium">
-          © 2026 FlowSphere · Crafted for the modern web.
         </div>
       </footer>
-
-      <style jsx global>{`
-        @keyframes float {
-          0%, 100% { transform: translateY(0) rotate(0deg); }
-          50% { transform: translateY(-20px) rotate(2deg); }
-        }
-        .animate-float {
-          animation: float 6s ease-in-out infinite;
-        }
-      `}</style>
     </div>
   );
 }
