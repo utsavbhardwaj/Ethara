@@ -54,7 +54,7 @@ npm run dev        # Starts on :3000
 
 | Role | Email | Password |
 |---|---|---|
-| Admin | admin@flowsphere.dev | Admin@123 |
+| Admin | utsavjha.me@gmail.com | utsavjha.mE@24 |
 | Member | alice@flowsphere.dev | Member@123 |
 | Member | bob@flowsphere.dev | Member@123 |
 
